@@ -1,5 +1,6 @@
 .DS_Store
 .credentials
 
-terraform.tfstate
+*.tfstate
+*.tfstate.backup
 .terraform
