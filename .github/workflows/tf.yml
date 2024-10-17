@@ -20,7 +20,7 @@ jobs:
 
     # Fmt
     - name: Terraform fmt
-      run: terraform fmt
+      run: terraform fmt -check
 
     # Init Terraform
     - name: Terraform Init
