@@ -26,13 +26,6 @@ jobs:
           github_token: ${{ secrets.gh_access_token }}
       continue-on-error: true
 
-    - name: Upload Artifact
-      uses: badgerhobbs/terraform-state@v2
-      with:
-          operation: upload
-          location: artifact
-          github_token: ${{ secrets.gh_access_token }}
-
     # Installe Terraform
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v2
@@ -60,3 +53,11 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+
+    - name: Upload Artifact
+      uses: badgerhobbs/terraform-state@v2
+      with:
+          operation: upload
+          location: artifact
+          github_token: ${{ secrets.gh_access_token }}
+
