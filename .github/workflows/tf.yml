@@ -2,8 +2,12 @@ name: Terraform
 
 on:
   push:
+    paths-ignore:
+      - "**.tfstate"
+      - "**.tfstate.encrypted"
     branches:
       - main
+
 
 jobs:
   terraform:
@@ -13,6 +17,21 @@ jobs:
     # Vérifiez le code source du repo
     - name: Checkout
       uses: actions/checkout@v4
+
+    - name: Download Artifact
+      uses: badgerhobbs/terraform-state@v2
+      with:
+          operation: download
+          location: artifact
+          github_token: ${{ secrets.gh_access_token }}
+      continue-on-error: true
+
+    - name: Upload Artifact
+      uses: badgerhobbs/terraform-state@v2
+      with:
+          operation: upload
+          location: artifact
+          github_token: ${{ secrets.gh_access_token }}
 
     # Installe Terraform
     - name: Install Terraform
